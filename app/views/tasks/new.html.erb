@@ -1,0 +1,22 @@
+<div class="card">
+	<div class="card-header">
+		<h2 class="card-title d-flex justify-content-between">
+			<span>Add Task</span>
+			<div>
+				<%= link_to 'Back', project_tasks_path(@task.project), class: "btn btn-outline-info" %>
+
+			</div>
+		</h2>
+	</div>
+	<div class="card-body">
+		<%= render 'form' %>
+
+	</div>
+</div>
+
+
+
+
+
+
+

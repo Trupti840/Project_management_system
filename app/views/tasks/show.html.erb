@@ -1,0 +1,32 @@
+
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title d-flex justify-content-between">
+      <span>  <%= @task.name.capitalize %> </span>
+      <div>
+        <%= link_to 'Edit', edit_project_task_path(@task.project, @task) ,class: "btn btn-outline-warning"%>
+        <%= link_to 'Back', project_path(@task.project) ,class: "btn btn-outline-secondary"%>
+      </div>
+    </h2>
+  </div>
+  <div class="card-body">
+    <p>
+      <b>Description:</b>
+      <%= @task.description.capitalize %>
+    </p>
+
+    <p>
+      <b>Status:</b>
+      <%= @task.status %>
+    </p>
+
+    <p>
+      <b>Project:</b>
+      <%=link_to @project.name.capitalize ,project_path(@project) %>
+    </p>
+
+  <%= button_to 'Destroy', [@task.project, @task], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+  </div>
+
+<br>
+</div>

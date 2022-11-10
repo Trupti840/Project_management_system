@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title d-flex justify-content-between">
+      <span>    <%= @project.name.capitalize %>     </span>
+      <div>
+       <%= link_to "Update", edit_project_path(@project),class:"btn btn-outline-warning " %>
+       <%= link_to "Back", projects_path ,class:"btn btn-outline-secondary" %>
+      </div>
+    </h2>
+  </div>
+  <div class="card-body"><h4>
+    <span><strong>Description:</strong> <%= @project.description.capitalize %></span><br><br>
+    <span><strong>User: </strong><%= @project.user_id %></span><br><br></h4>
+       <%= button_to "Delete", @project, method: :delete ,class: "btn btn-outline-danger btn-sm" %>
+  </div>
+  
+</div>
+
+
+<hr>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title d-flex justify-content-between">Add Task</h2>
+  </div>
+  <div class="card-body">
+    <%= render 'tasks/form' %>
+  </div>
+</div>
+<hr>
+
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title d-flex justify-content-between"><span>Listing Tasks</span>
+    <div>
+      <%= link_to 'New Task', new_project_task_path(@project.id) , class: "btn btn-outline-primary" %>  
+    </div></h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover">
+
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Project</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @project.tasks.each do |task| %>
+      <% if task.persisted? %>
+        <tr>
+          <td><%= task.name %></td>
+          <td><%= task.description %></td>
+          <td><%= task.status %></td>
+          <td><%= task.project.name.inspect %></td>
+          <td><%= link_to 'Show', [task.project, task], class: "btn btn-outline-info" %></td>
+          <td><%= link_to 'Edit', edit_project_task_path(task.project, task),class: "btn btn-outline-warning" %></td>
+          <td><%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-outline-danger"%></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+
+  <br />
+
+    
+  </div>
+  
+</div><br>
+
+<center><%= link_to "Back", projects_path ,class:"btn btn-outline-secondary" %></center>
+<br>
+
+
